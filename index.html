@@ -9,18 +9,18 @@
   <style>
     body {
       display: flex;
-      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
     * {
       margin: 0;
     }
     .outer-container {
+      margin-top: 2rem;
       position: relative;
       height: 720px;
       overflow: hidden;
-      width: 650px;
-    }
-    .img-container1 {
+      width: 628px;
     }
 
     .img-container2 {
@@ -33,6 +33,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      pointer-events: none;
     }
     .divider {
       position: absolute;
@@ -49,10 +50,12 @@
       padding-left: 0.5rem;
       font-size: 2rem;
       font-weight: 900;
+      pointer-events: none;
     }
   </style>
   <body>
-    <div class="outer-container" onmousemove="resizeContainer(event)">
+    <h1>Slider image comparison</h1>
+    <div class="outer-container">
       <div class="img-container1">
         <img src="./images/rtxoff.png" alt="" srcset="" />
       </div>
@@ -63,7 +66,14 @@
     </div>
     <script>
       const container2 = document.querySelector(".img-container2");
+      const outerContainer = document.querySelector(".outer-container");
+      outerContainer.addEventListener("mousemove", function (e) {
+        resizeContainer(e);
+      });
+
       function resizeContainer(e) {
+        console.log(e.target);
+
         if (e.offsetX < 630) {
           let xCoords = e.offsetX;
           container2.style.width = xCoords + "px";
