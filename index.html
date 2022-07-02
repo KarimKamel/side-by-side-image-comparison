@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+    * {
+      margin: 0;
+    }
+    .outer-container {
+      position: relative;
+      height: 720px;
+      overflow: hidden;
+      width: 650px;
+    }
+    .img-container1 {
+    }
+
+    .img-container2 {
+      overflow: hidden;
+      border-right: 5px solid red;
+    }
+
+    .img-container1,
+    .img-container2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .divider {
+      position: absolute;
+      top: 50%;
+      transform: translate(50%, -50%);
+      right: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding-left: 0.5rem;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+  </style>
+  <body>
+    <div class="outer-container" onmousemove="resizeContainer(event)">
+      <div class="img-container1">
+        <img src="./images/rtxoff.png" alt="" srcset="" />
+      </div>
+      <div class="img-container2">
+        <img src="./images/rtxon.png" alt="" srcset="" />
+        <div class="divider">&#60;</div>
+      </div>
+    </div>
+    <script>
+      const container2 = document.querySelector(".img-container2");
+      function resizeContainer(e) {
+        e.preventDefault();
+        console.log(e.srcElement);
+        console.log(e);
+        console.log(e.offsetX);
+        if (e.offsetX < 630 && e.toElement != "div.divider") {
+          let xCoords = e.offsetX;
+          container2.style.width = xCoords + "px";
+        }
+      }
+    </script>
+  </body>
+</html>
